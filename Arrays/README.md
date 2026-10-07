@@ -2,7 +2,6 @@
 
 Java solutions for common **Two Sum, 3Sum, 3Sum Closest, and 4Sum** problems.
 
-## Problems
 
 ### 1. Two Sum
 
