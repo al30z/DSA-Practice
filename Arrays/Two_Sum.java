@@ -14,6 +14,6 @@ class Solution {
             map.put(nums[i], i);
         }
         
-        return new int[] {}; // fallback (won’t happen as per constraints)
+        return new int[] {}; 
     }
 }
