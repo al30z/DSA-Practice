@@ -1,0 +1,39 @@
+public class Solution1852 {
+    public int[] distinctNumbers(int[] nums, int k) {
+        int n = nums.length;
+        int[] result = new int[n - k + 1];
+        // Using an array as a lightweight custom hash table for frequencies
+        int[] freq = new int[100001]; 
+        int distinctCount = 0;
+
+        // Process the first window
+        for (int i = 0; i < k; i++) {
+            if (freq[nums[i]] == 0) {
+                distinctCount++;
+            }
+            freq[nums[i]]++;
+        }
+        result[0] = distinctCount;
+
+        // Slide the window across the array
+        for (int i = k; i < n; i++) {
+            // Remove left element
+            int outVal = nums[i - k];
+            freq[outVal]--;
+            if (freq[outVal] == 0) {
+                distinctCount--;
+            }
+
+            // Add right element
+            int inVal = nums[i];
+            if (freq[inVal] == 0) {
+                distinctCount++;
+            }
+            freq[inVal]++;
+
+            result[i - k + 1] = distinctCount;
+        }
+
+        return result;
+    }
+}
