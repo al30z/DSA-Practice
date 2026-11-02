@@ -1,0 +1,28 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class Solution560 {
+    public int subarraySum(int[] nums, int k) {
+        int count = 0;
+        int prefixSum = 0;
+        // Map stores: key = prefix sum, value = frequency of occurrence
+        Map<Integer, Integer> prefixMap = new HashMap<>();
+        
+        // Base case: prefix sum of 0 appears once (empty subarray)
+        prefixMap.put(0, 1);
+
+        for (int num : nums) {
+            prefixSum += num;
+
+            // If (prefixSum - k) exists in map, add its frequency
+            if (prefixMap.containsKey(prefixSum - k)) {
+                count += prefixMap.get(prefixSum - k);
+            }
+
+            // Record current prefix sum
+            prefixMap.put(prefixSum, prefixMap.getOrDefault(prefixSum, 0) + 1);
+        }
+
+        return count;
+    }
+}
